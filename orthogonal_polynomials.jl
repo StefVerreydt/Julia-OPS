@@ -50,16 +50,16 @@ end
 Base.getindex(ops::OrthogonalPolynomialSequence, n) = OrthogonalPolynomial(ops, n)
 
 
-##??
+##Experiment
 immutable OPSWithPrecision{T}
   ops :: OPS
-  typeIndicator :: T #1.0 of Float64?
+  typeIndicator :: DataType
 end
 
 immutable OPWithPrecision{T}
   op :: OrthogonalPolynomial
   n :: Int64
-  typeIndicator :: T
+  typeIndicator :: DataType
 end
 
 Base.getindex(OPSWP::OPSWithPrecision, n) = OPWithPrecision(OrthogonalPolynomial(OPSWP.ops, n) , n)

@@ -20,9 +20,9 @@ immutable RecurrenceCoefficientBeta{O <: OPS}
   pol::O
   n::Int
 end
-length(rc::RecurrenceCoefficientAlpha) = rc.n
-length(rc::RecurrenceCoefficientBeta) = rc.n
-eltype(rc::RecurrenceCoefficientAlpha) = eltype(rc.pol)
-eltype(rc::RecurrenceCoefficientBeta) = eltype(rc.pol)
+Base.length(rc::RecurrenceCoefficientAlpha) = rc.n
+Base.length(rc::RecurrenceCoefficientBeta) = rc.n
+Base.eltype(rc::RecurrenceCoefficientAlpha) = getPrecision(rc.pol)
+Base.eltype(rc::RecurrenceCoefficientBeta) = getPrecision(rc.pol)
 Base.getindex(r::RecurrenceCoefficientAlpha, i::Int ) = recurrence_coefficient_alpha(r.pol, i)
 Base.getindex(r::RecurrenceCoefficientBeta, i::Int ) = recurrence_coefficient_beta(r.pol, i)

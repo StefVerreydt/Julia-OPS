@@ -10,3 +10,19 @@ function recurrence_coefficients(pol::OrthogonalPolynomialSequence, N::Int)
 end
 
 recurrence_coefficients(p::OrthogonalPolynomial) = recurrence_coefficients(p.ops, p.n)
+
+
+immutable RecurrenceCoefficientAlpha{O <: OPS}
+  pol::O
+  n::Int
+end
+immutable RecurrenceCoefficientBeta{O <: OPS}
+  pol::O
+  n::Int
+end
+length(rc::RecurrenceCoefficientAlpha) = rc.n
+length(rc::RecurrenceCoefficientBeta) = rc.n
+eltype(rc::RecurrenceCoefficientAlpha) = eltype(rc.pol)
+eltype(rc::RecurrenceCoefficientBeta) = eltype(rc.pol)
+Base.getindex(r::RecurrenceCoefficientAlpha, i::Int ) = recurrence_coefficient_alpha(r.pol, i)
+Base.getindex(r::RecurrenceCoefficientBeta, i::Int ) = recurrence_coefficient_beta(r.pol, i)

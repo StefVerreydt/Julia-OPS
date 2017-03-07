@@ -9,12 +9,17 @@ typealias OPS OrthogonalPolynomialSequence
 immutable HermitePolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence
 end
 
+# Nadeel: getPrecision nodig voor elk type OPS
+function getPrecision{T}(pol::HermitePolynomialSequence{T})
+  z = T
+end
+
 HermitePolynomialSequence() = HermitePolynomialSequence{Float64}()
 
 # The monic Jacobi polynomials with parameters
 # a and b. These are orthogonal on [-1,1] relative to the
 # weight function w(t)=(1-t)^a(1+t)^b.
-immutable JacobiPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence #polJac = OPQ.JacobiPolynomialSequence(0.5,0.5) ??
+immutable JacobiPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence
   a :: T
   b :: T
   function JacobiPolynomialSequence(a, b)
@@ -48,32 +53,3 @@ immutable OrthogonalPolynomial{P}
 end
 
 Base.getindex(ops::OrthogonalPolynomialSequence, n) = OrthogonalPolynomial(ops, n)
-
-
-##Experiment
-immutable OPSWithPrecision{T}
-  ops :: OPS
-  typeIndicator :: DataType
-end
-
-immutable OPWithPrecision{T}
-  op :: OrthogonalPolynomial
-  n :: Int64
-  typeIndicator :: DataType
-end
-
-Base.getindex(OPSWP::OPSWithPrecision, n) = OPWithPrecision(OrthogonalPolynomial(OPSWP.ops, n) , n)
-
-# eval(p::OrthogonalPolynomial, x) = ...
-# aan de hand van drietermsrecursiebetrekking
-
-# jacobi_matrix(p::OrthogonalPolynomial) =
-
-# roots(p::OrthogonalPolynomial) = ...
-# via eigenwaarden van Jacobi matrix
-
-# Quid Legendre, veeltermen met zelfberekende recursiecoefficiencent,
-
-# plotten?
-
-# gaussregel, bereken van integralen

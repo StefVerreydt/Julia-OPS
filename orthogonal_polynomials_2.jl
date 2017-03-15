@@ -1,10 +1,12 @@
+import Base.eltype
+
 abstract OrthogonalPolynomialSequence{T}
 
 typealias OPS OrthogonalPolynomialSequence
 
 # + Kan gebruikt worden voor elk type OPS
 # - Type parameter bij OPS?
-function getPrecision{T}(pol::OrthogonalPolynomialSequence{T})
+function eltype{T}(pol::OrthogonalPolynomialSequence{T})
   T
 end
 

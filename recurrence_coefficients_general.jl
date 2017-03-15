@@ -12,17 +12,17 @@ end
 recurrence_coefficients(p::OrthogonalPolynomial) = recurrence_coefficients(p.ops, p.n)
 
 
-immutable RecurrenceCoefficientAlpha{O <: OPS}
-  pol::O
+immutable RecurrenceCoefficientAlpha{T <: Number}
+  pol::OrthogonalPolynomialSequence{T}
   n::Int
 end
-immutable RecurrenceCoefficientBeta{O <: OPS}
-  pol::O
+immutable RecurrenceCoefficientBeta{T <: Number} # OPQ.RecurrenceCoefficientAlpha{OPQ.HermitePolynomialSequence{Float64}}
+  pol::OrthogonalPolynomialSequence{T} # OPQ.HermitePolynomialSequence{Float64}
   n::Int
 end
 Base.length(rc::RecurrenceCoefficientAlpha) = rc.n
 Base.length(rc::RecurrenceCoefficientBeta) = rc.n
-Base.eltype(rc::RecurrenceCoefficientAlpha) = getPrecision(rc.pol)
-Base.eltype(rc::RecurrenceCoefficientBeta) = getPrecision(rc.pol)
-Base.getindex(r::RecurrenceCoefficientAlpha, i::Int ) = recurrence_coefficient_alpha(r.pol, i)
-Base.getindex(r::RecurrenceCoefficientBeta, i::Int ) = recurrence_coefficient_beta(r.pol, i)
+Base.eltype(rc::RecurrenceCoefficientAlpha) = eltype(rc.pol)
+Base.eltype(rc::RecurrenceCoefficientBeta) = eltype(rc.pol)
+Base.getindex{T}(r::RecurrenceCoefficientAlpha{T}, i::Int ) = recurrence_coefficient_alpha{T}(r.pol, i)
+Base.getindex{T}(r::RecurrenceCoefficientBeta{T}, i::Int ) = recurrence_coefficient_beta{T}(r.pol, i)

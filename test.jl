@@ -6,7 +6,7 @@ function test_three_term_rec(xvals, pol::OrthogonalPolynomial)
   result
 end
 
-function test_three_term_rec(xvals, pol::OrthogonalPolynomial)
+function test_three_term_rec_array(xvals, pol::OrthogonalPolynomial)
   result = zeros(length(xvals))
   for k in 1:length(xvals)
     result[k] = three_term_recurrence_array(pol, x[k])

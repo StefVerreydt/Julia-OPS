@@ -1,5 +1,5 @@
 module OPQ
-  include("orthogonal_polynomials_2.jl")
+  include("orthogonal_polynomials.jl")
   include("recurrence_coefficients_hermite.jl")
   include("recurrence_coefficients_jacobi.jl")
   include("recurrence_coefficients_laguerre.jl")
@@ -7,4 +7,5 @@ module OPQ
   include("three_term_recurrence.jl")
   include("jacobi_matrix.jl")
   include("gauss.jl")
+  include("test.jl")
 end

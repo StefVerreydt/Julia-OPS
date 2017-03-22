@@ -27,12 +27,11 @@ immutable JacobiPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence
       @assert b >= -1
       new(a,b)
   end
-
 end
 
-JacobiPolynomialSequence(a, b) = JacobiPolynomialSequence(promote(a,b)...)
+# JacobiPolynomialSequence(a, b) = JacobiPolynomialSequence(promote(a,b)...)
 
-JacobiPolynomialSequence{T}(a::T, b::T) = JacobiPolynomialSequence{T}(a,b)
+# JacobiPolynomialSequence{T}(a::T, b::T) = JacobiPolynomialSequence{T}(a,b)
 
 # The monic generalized Laguerre polynomials
 # with parameter a. These are orthogonal on [0,Inf] relative

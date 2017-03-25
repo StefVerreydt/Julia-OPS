@@ -11,22 +11,16 @@ end
 
 recurrence_coefficients(p::OrthogonalPolynomial) = recurrence_coefficients(p.ops, p.n)
 
-
-immutable RecurrenceCoefficientAlpha{O,T <: Number}
-  pol::O
+immutable RecurrenceCoefficientAlpha{T <: Number} # OPQ.RecurrenceCoefficientAlpha{OPQ.HermitePolynomialSequence{Float64}}
+  pol::OrthogonalPolynomialSequence{T} # OPQ.HermitePolynomialSequence{Float64}
   n::Int
-
-  RecurrenceCoefficientAlpha(pol::OrthogonalPolynomialSequence{T},n) = new(pol,n)
 end
-
-RecurrenceCoefficientAlpha{T}(pol::OrthogonalPolynomialSequence{T}, n) = RecurrenceCoefficientAlpha{typeof(pol),T}(pol, n)
-
-
 
 immutable RecurrenceCoefficientBeta{T <: Number} # OPQ.RecurrenceCoefficientAlpha{OPQ.HermitePolynomialSequence{Float64}}
   pol::OrthogonalPolynomialSequence{T} # OPQ.HermitePolynomialSequence{Float64}
   n::Int
 end
+
 Base.length(rc::RecurrenceCoefficientAlpha) = rc.n
 Base.length(rc::RecurrenceCoefficientBeta) = rc.n
 Base.eltype(rc::RecurrenceCoefficientAlpha) = eltype(rc.pol)

@@ -45,8 +45,8 @@ immutable LaguerrePolynomialSequence{T <: Number} <: OrthogonalPolynomialSequenc
 end
 
 
-immutable OrthogonalPolynomial{P}
-    ops ::  P
+immutable OrthogonalPolynomial{T <: Number}
+    ops ::  OrthogonalPolynomialSequence{T}
     n   ::  Int64
 
     function OrthogonalPolynomial(ops, n)
@@ -54,5 +54,7 @@ immutable OrthogonalPolynomial{P}
         new(ops, n)
     end
 end
+
+OrthogonalPolynomial{T}(ops::OrthogonalPolynomialSequence{T}, n::Int64) = OrthogonalPolynomial{T}(ops,n)
 
 Base.getindex(ops::OrthogonalPolynomialSequence, n) = OrthogonalPolynomial(ops, n)

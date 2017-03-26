@@ -8,4 +8,5 @@ module OPQ
   include("jacobi_matrix.jl")
   include("gauss.jl")
   include("test.jl")
+  include("plot.jl")
 end

@@ -16,10 +16,22 @@ immutable RecurrenceCoefficientAlpha{T <: Number} # OPQ.RecurrenceCoefficientAlp
   n::Int
 end
 
+
 immutable RecurrenceCoefficientBeta{T <: Number} # OPQ.RecurrenceCoefficientAlpha{OPQ.HermitePolynomialSequence{Float64}}
   pol::OrthogonalPolynomialSequence{T} # OPQ.HermitePolynomialSequence{Float64}
   n::Int
 end
+
+#Make RecurrenceCoefficientAlpha and -Beta iterable:
+Base.start(rec::RecurrenceCoefficientAlpha) = 1
+Base.next(rec::RecurrenceCoefficientAlpha, n::Int) = getindex(rec,n) , n+1
+Base.done(rec::RecurrenceCoefficientAlpha, n::Int) = n == rec.n
+
+Base.start(rec::RecurrenceCoefficientBeta) = 1
+Base.next(rec::RecurrenceCoefficientBeta, n::Int) = getindex(rec,n) , n+1
+Base.done(rec::RecurrenceCoefficientBeta, n::Int) = n == rec.n
+
+
 
 Base.length(rc::RecurrenceCoefficientAlpha) = rc.n
 Base.length(rc::RecurrenceCoefficientBeta) = rc.n

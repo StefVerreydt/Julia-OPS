@@ -4,14 +4,12 @@ abstract OrthogonalPolynomialSequence{T}
 
 typealias OPS OrthogonalPolynomialSequence
 
-# + Kan gebruikt worden voor elk type OPS
-# - Type parameter bij OPS?
 function eltype{T}(pol::OrthogonalPolynomialSequence{T})
   T
 end
 
-# The monic generalized Hermite polynomials
-# with parameter mu. These are orthogonal on [-Inf,Inf]
+# The monic generalized Hermite polynomials.
+# These are orthogonal on [-Inf,Inf]
 # relative to the weight function w(t)=|t|exp(-t^2).
 immutable HermitePolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{T}
 end
@@ -30,12 +28,28 @@ immutable JacobiPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{
       @assert b >= -1
       new(a,b)
   end
-
 end
 
 JacobiPolynomialSequence(a, b) = JacobiPolynomialSequence(promote(a,b)...)
 
 JacobiPolynomialSequence{T}(a::T, b::T) = JacobiPolynomialSequence{T}(a,b)
+
+# The monic Gegenbauer polynomials with parameter a.
+# These are orthogonal on [-1,1] relative to the
+# weight function w(t)=(1-t^2)^(a-1/2)
+immutable GegenbauerPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{T}
+  a::T
+end
+
+immutable FirstChebyshevPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{T}
+end
+
+immutable SecondChebyshevPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{T}
+end
+
+# weight function 1
+immutable LegendrePolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{T}
+end
 
 # The monic generalized Laguerre polynomials
 # with parameter a. These are orthogonal on [0,Inf] relative

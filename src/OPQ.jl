@@ -5,6 +5,7 @@ module OPQ
   include("recurrence_coefficients_laguerre.jl")
   include("recurrence_coefficients_general.jl")
   include("three_term_recurrence.jl")
+  include("three_term_recurrence_chebyshev.jl")
   include("jacobi_matrix.jl")
   include("gauss.jl")
   include("plot.jl")

@@ -23,12 +23,12 @@ function three_term_recurrence(pol::OrthogonalPolynomial, x::Number)
 end
 
 function thee_term_recurrence_array(ops::OrthogonalPolynomialSequence, n::Int, x::Number)
-  a,b = recurrence_coefficients(pol.ops, n)
+  a,b = recurrence_coefficients(ops, n)
   three_term_recurrence(a,b,x)
 end
 
 function three_term_recurrence(ops::OrthogonalPolynomialSequence, n::Int, x::Number)
-  a = RecurrenceCoefficientAlpha(ops, pol.n)
-  b = RecurrenceCoefficientBeta(ops, pol.n)
+  a = RecurrenceCoefficientAlpha(ops, n)
+  b = RecurrenceCoefficientBeta(ops, n)
   three_term_recurrence(a,b,x)
 end

@@ -41,15 +41,23 @@ immutable GegenbauerPolynomialSequence{T <: Number} <: OrthogonalPolynomialSeque
   a::T
 end
 
+# a=b=-1/2
 immutable FirstChebyshevPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{T}
 end
 
+FirstChebyshevPolynomialSequence() = FirstChebyshevPolynomialSequence{Float64}()
+
+# a=b=1/2
 immutable SecondChebyshevPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{T}
 end
+
+SecondChebyshevPolynomialSequence() = SecondChebyshevPolynomialSequence{Float64}()
 
 # weight function 1
 immutable LegendrePolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{T}
 end
+
+LegendrePolynomialSequence() = LegendrePolynomialSequence{Float64}()
 
 # The monic generalized Laguerre polynomials
 # with parameter a. These are orthogonal on [0,Inf] relative

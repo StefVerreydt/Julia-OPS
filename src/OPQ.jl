@@ -8,5 +8,6 @@ module OPQ
   include("three_term_recurrence_chebyshev.jl")
   include("jacobi_matrix.jl")
   include("gauss.jl")
+  include("specify_polynomial.jl")
   include("plot.jl")
 end

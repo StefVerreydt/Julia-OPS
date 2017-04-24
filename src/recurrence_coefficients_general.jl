@@ -1,4 +1,4 @@
-function recurrence_coefficients(ops::OrthogonalPolynomialSequence, N::Int)
+function recurrence_coefficients(ops::OrthogonalPolynomialSequence, N)
     @assert N >= 0
     a = zeros(N)
     b = zeros(N)
@@ -11,14 +11,14 @@ end
 
 recurrence_coefficients(p::OrthogonalPolynomial) = recurrence_coefficients(p.ops, p.n)
 
-immutable RecurrenceCoefficientAlpha{T <: Number}
-  ops::OrthogonalPolynomialSequence{T}
+immutable RecurrenceCoefficientAlpha{O <: OrthogonalPolynomialSequence}
+  ops::O
   n::Int
 end
 
 
-immutable RecurrenceCoefficientBeta{T <: Number}
-  ops::OrthogonalPolynomialSequence{T}
+immutable RecurrenceCoefficientBeta{O <: OrthogonalPolynomialSequence}
+  ops::O
   n::Int
 end
 
@@ -37,5 +37,5 @@ Base.length(rc::RecurrenceCoefficientAlpha) = rc.n
 Base.length(rc::RecurrenceCoefficientBeta) = rc.n
 Base.eltype(rc::RecurrenceCoefficientAlpha) = eltype(rc.ops)
 Base.eltype(rc::RecurrenceCoefficientBeta) = eltype(rc.ops)
-Base.getindex(r::RecurrenceCoefficientAlpha, i::Int ) = recurrence_coefficient_alpha(r.ops, i)
-Base.getindex(r::RecurrenceCoefficientBeta, i::Int ) = recurrence_coefficient_beta(r.ops, i)
+Base.getindex(r::RecurrenceCoefficientAlpha, i) = recurrence_coefficient_alpha(r.ops, i)
+Base.getindex(r::RecurrenceCoefficientBeta, i) = recurrence_coefficient_beta(r.ops, i)

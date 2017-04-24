@@ -7,3 +7,5 @@ function gauss_quadrature(N::Int, a, b)
     V=V[:,I]
     D, b[1]*V[1,:].^2
 end
+
+gauss_quadrature(ops::OrthogonalPolynomialSequence, N) = gauss_quadrature(N, recurrence_coefficients(ops)...)

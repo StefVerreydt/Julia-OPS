@@ -4,9 +4,7 @@ abstract OrthogonalPolynomialSequence{T}
 
 typealias OPS OrthogonalPolynomialSequence
 
-function eltype{T}(pol::OrthogonalPolynomialSequence{T})
-  T
-end
+eltype{T}(pol::OrthogonalPolynomialSequence{T}) = T
 
 # The monic generalized Hermite polynomials.
 # These are orthogonal on [-Inf,Inf]
@@ -41,6 +39,11 @@ immutable GegenbauerPolynomialSequence{T <: Number} <: OrthogonalPolynomialSeque
   a::T
 end
 
+function GegenbauerPolynomialSequence{T <: Number}(jac::JacobiPolynomialSequence{T})
+  @assert jac.a == jac.b
+  GegenbauerPolynomialSequence(jac.a)
+end
+
 # a=b=-1/2
 immutable FirstChebyshevPolynomialSequence{T <: Number} <: OrthogonalPolynomialSequence{T}
 end
@@ -67,9 +70,9 @@ immutable LaguerrePolynomialSequence{T <: Number} <: OrthogonalPolynomialSequenc
 end
 
 
-immutable OrthogonalPolynomial{T <: Number}
-    ops ::  OrthogonalPolynomialSequence{T}
-    n   ::  Int64
+immutable OrthogonalPolynomial{O<: OrthogonalPolynomialSequence}
+    ops ::  O
+    n   ::  Int
 
     function OrthogonalPolynomial(ops, n)
         @assert n >= 0
@@ -77,6 +80,8 @@ immutable OrthogonalPolynomial{T <: Number}
     end
 end
 
-OrthogonalPolynomial{T}(ops::OrthogonalPolynomialSequence{T}, n::Int64) = OrthogonalPolynomial{T}(ops,n)
+OrthogonalPolynomial(ops::OrthogonalPolynomialSequence, n::Int64) = OrthogonalPolynomial{typeof(ops)}(ops,n)
 
 Base.getindex(ops::OrthogonalPolynomialSequence, n) = OrthogonalPolynomial(ops, n)
+
+eltype(pol::OrthogonalPolynomial) = eltype(pol.ops)

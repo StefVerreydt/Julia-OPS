@@ -1,11 +1,10 @@
 function three_term_recurrence(ops::FirstChebyshevPolynomialSequence, n::Int, x::Number)
-
   if n == 0
     1
   elseif n == 1
     x
   else
-    cos(*(n,acos(x)))
+    cos(n*acos(x))
   end
 end
 

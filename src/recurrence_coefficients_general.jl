@@ -9,7 +9,7 @@ function recurrence_coefficients(ops::OrthogonalPolynomialSequence, N)
     a,b
 end
 
-recurrence_coefficients(p::OrthogonalPolynomial) = recurrence_coefficients(p.ops, p.n)
+recurrence_coefficients(pol::OrthogonalPolynomial) = recurrence_coefficients(p.ops, p.n)
 
 immutable RecurrenceCoefficientAlpha{O <: OrthogonalPolynomialSequence}
   ops::O

@@ -80,7 +80,7 @@ immutable OrthogonalPolynomial{O<: OrthogonalPolynomialSequence}
     end
 end
 
-OrthogonalPolynomial(ops::OrthogonalPolynomialSequence, n::Int64) = OrthogonalPolynomial{typeof(ops)}(ops,n)
+OrthogonalPolynomial(ops::OrthogonalPolynomialSequence, n) = OrthogonalPolynomial{typeof(ops)}(ops,n)
 
 Base.getindex(ops::OrthogonalPolynomialSequence, n) = OrthogonalPolynomial(ops, n)
 
